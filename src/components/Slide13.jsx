@@ -28,7 +28,7 @@ const Slide13 = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Bài học xương máu về
+        BÀI HỌC XƯƠNG MÁU VỀ
       </motion.h2>
 
       <motion.div 

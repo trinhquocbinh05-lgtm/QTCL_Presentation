@@ -13,7 +13,7 @@ const Slide12 = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Đúc kết chiến lược
+        ĐÚC KẾT CHIẾN LƯỢC
       </motion.h2>
 
       <div className="slide12-content">

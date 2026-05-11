@@ -42,7 +42,7 @@ const Slide8 = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="slide-title gradient-text">Truyền Thông: Cuộc Hôn Phối Lệch Pha</h2>
+          <h2 className="slide-title gradient-text">TRUYỀN THÔNG: CUỘC HÔN PHỐI LỆCH PHA</h2>
           <div className="title-underline"></div>
           <p className="slide-subtitle text-danger">Trị Giá 2 Triệu USD</p>
         </motion.div>

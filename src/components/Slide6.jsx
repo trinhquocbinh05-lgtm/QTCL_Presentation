@@ -92,7 +92,7 @@ const Slide6 = () => {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <h1 className="slide-title">
-          Ma Trận SWOT: <span className="highlight-text">Sức Mạnh Bị Vô Hiệu Hóa</span>
+          MA TRẬN SWOT: <span className="highlight-text">Sức Mạnh Bị Vô Hiệu Hóa</span>
         </h1>
         <div className="title-underline"></div>
       </motion.div>

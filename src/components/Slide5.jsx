@@ -53,7 +53,7 @@ const Slide5 = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
       >
-        <h1 className="slide-title">Sai Lệch Về Insight Người Tiêu Dùng</h1>
+        <h1 className="slide-title">SAI LỆCH VỀ INSIGHT NGƯỜI TIÊU DÙNG</h1>
         <div className="title-underline"></div>
       </motion.div>
 

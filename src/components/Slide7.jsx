@@ -70,7 +70,7 @@ const Slide7 = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="slide-title gradient-text">Chiến lược Sản phẩm</h2>
+          <h2 className="slide-title gradient-text">CHIẾN LƯỢC SẢN PHẨM</h2>
           <div className="title-underline"></div>
           <p className="slide-subtitle text-danger">Cái Bẫy Của Thương Hiệu Mẹ</p>
         </motion.div>
