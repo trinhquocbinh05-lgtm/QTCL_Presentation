@@ -1,0 +1,291 @@
+/* Refined Layout for Slide 7 - No Overlapping */
+.slide7-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 4rem;
+  overflow: hidden;
+  height: 100%;
+}
+
+.dynamic-bg {
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  z-index: 0; 
+  pointer-events: none;
+}
+
+.bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+}
+
+.blue-glow { top: 20%; left: 5%; width: 400px; height: 400px; background: rgba(59, 130, 246, 0.15); }
+.brown-glow { top: 20%; right: 5%; width: 400px; height: 400px; background: rgba(217, 119, 6, 0.15); }
+.red-glow { top: 40%; left: 50%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(239, 68, 68, 0.2) 0%, rgba(0,0,0,0) 60%); transform: translate(-50%, -50%); }
+
+.z-10 { z-index: 10; width: 100%; }
+
+.slide-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+.slide-subtitle {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ef4444;
+  text-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+.equation-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 1.5rem auto;
+  gap: 1.5rem;
+}
+
+.equation-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  max-width: 270px;
+}
+
+.equation-operator {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 30px; /* Align with center of icons */
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.operator-circle {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(255,255,255,0.05);
+}
+
+.dna-card, .conflict-card {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.dna-card:hover, .conflict-card:hover { 
+  transform: translateY(-5px); 
+}
+
+.icon-wrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem auto;
+}
+
+.blue-icon { 
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.05));
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.brown-icon { 
+  background: linear-gradient(135deg, rgba(180, 83, 9, 0.3), rgba(180, 83, 9, 0.05));
+  color: #fcd34d; 
+  border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.alert-icon-wrapper {
+  width: 100px;
+  height: 100px;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem auto;
+  border: 2px solid #ef4444;
+}
+
+.dna-card h3, .conflict-card h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.text-blue { color: #93c5fd; }
+.text-brown { color: #fcd34d; }
+.text-danger { color: #ef4444; }
+
+.conflict-title {
+  font-size: 1.4rem !important;
+  line-height: 1.4;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.dna-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.dna-card li {
+  font-size: 1.1rem;
+  padding: 0.4rem 0;
+  color: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.dna-card li:last-child { border-bottom: none; }
+
+.consequence-box {
+  width: 100%;
+  max-width: 1000px;
+  padding: 1.5rem 2.5rem;
+  border-radius: 16px;
+  position: relative;
+  background: rgba(15, 23, 42, 0.7); 
+  border-left: 5px solid #ef4444;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  margin-bottom: 1rem;
+}
+
+.consequence-label {
+  position: absolute;
+  top: -14px;
+  left: 2rem;
+  background: linear-gradient(90deg, #ef4444, #b91c1c);
+  color: white;
+  padding: 0.3rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+.consequence-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  text-align: justify;
+}
+
+.highlight-text {
+  color: white;
+  font-weight: 600;
+  background: rgba(239, 68, 68, 0.8);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+@media (max-width: 1200px) {
+  .equation-container {
+    gap: 1rem;
+  }
+  .equation-item {
+    max-width: 250px;
+    padding: 1.5rem;
+  }
+  .icon-wrapper, .alert-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.8rem;
+  }
+  .icon-wrapper svg, .alert-icon-wrapper svg {
+    width: 40px;
+    height: 40px;
+  }
+  .operator-circle {
+    padding: 10px;
+  }
+  .operator-circle svg {
+    width: 30px;
+    height: 30px;
+  }
+  .equation-operator {
+    padding-top: 30px;
+  }
+  .dna-card h3, .conflict-card h3, .conflict-title {
+    font-size: 1.1rem !important;
+  }
+  .dna-card li {
+    font-size: 1rem;
+  }
+  .consequence-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .slide7-container {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto;
+    padding: 1rem;
+    justify-content: flex-start;
+  }
+  .equation-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .equation-item {
+    max-width: 100%;
+    width: 100%;
+  }
+  .equation-operator {
+    padding-top: 0;
+  }
+  .consequence-box {
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-title {
+    font-size: 2rem;
+  }
+  .slide-subtitle {
+    font-size: 1.2rem;
+  }
+  .consequence-text {
+    font-size: 1rem;
+  }
+  .consequence-label {
+    left: 1rem;
+  }
+}

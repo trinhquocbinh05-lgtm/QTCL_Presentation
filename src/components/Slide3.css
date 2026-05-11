@@ -1,0 +1,155 @@
+.slide3-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 5cqw 6cqw;
+  box-sizing: border-box;
+  position: relative;
+  container-type: size;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .slide3-container {
+    width: calc(100vh * 16 / 9);
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .slide3-container {
+    height: calc(100vw * 9 / 16);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+}
+
+.slide3-title {
+  color: #f8fafc;
+  font-size: 3.5cqw;
+  font-weight: 800;
+  margin-top: 1cqw;
+  margin-bottom: 2cqw;
+  text-transform: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.chart-container {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border-radius: 1.5cqw;
+  /* Removed white background and shadow */
+}
+
+.chart-svg {
+  width: 100%;
+  height: 100%;
+  /* prevent SVG from creating extra space */
+  display: block; 
+}
+
+.chart-labels-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.y-axis-label {
+  position: absolute;
+  left: 3%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-size: 1.5cqw;
+  color: #e2e8f0; /* Lighter text for dark background */
+  font-weight: 500;
+}
+
+.x-axis-labels {
+  position: absolute;
+  bottom: 1%;
+  left: 0;
+  width: 100%;
+  height: 3cqw;
+}
+
+.x-axis-labels span {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 1.5cqw;
+  color: #e2e8f0; /* Lighter text for dark background */
+  font-weight: 500;
+}
+
+/* We will position these spans inline in React to match the 100-800 X values 
+   If SVG viewbox width is 900, X=100 is (100/900) * 100% = 11.11%
+*/
+
+.annotation {
+  position: absolute;
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(10px);
+  padding: 0.8cqw 1.2cqw;
+  border-radius: 0.5cqw;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 0.4cqw solid #ef4444; /* Accent left border */
+  box-shadow: 0 0.5cqw 1.5cqw rgba(0,0,0,0.3);
+  font-size: 1.2cqw;
+  color: #f8fafc;
+  max-width: 24cqw;
+  z-index: 10;
+}
+
+.annotation h4 {
+  margin: 0 0 0.5cqw 0;
+  font-size: 1.4cqw;
+  font-weight: 700;
+  color: #fca5a5; /* Bright accent text for titles */
+}
+
+.annotation p {
+  margin: 0;
+  line-height: 1.4;
+  color: #e2e8f0;
+}
+
+/* Positioning based on SVG viewbox (0 to 900 width, 0 to 450 height) */
+.anno-2003 {
+  /* Line ends at X=100 (11.11%), Y=260 (57.77%) */
+  left: 11.11%;
+  top: 57.77%;
+  transform: translate(-100%, -50%);
+  margin-left: -1cqw;
+  margin-top: 0;
+}
+
+.anno-2007 {
+  /* Line ends at X=350 (38.88%), Y=80 (17.77%) */
+  left: 38.88%;
+  top: 17.77%;
+  transform: translate(-100%, -50%);
+  margin-left: -0.5cqw;
+}
+
+.anno-2008 {
+  /* Line ends at X=680 (75.55%), Y=150 (33.33%) */
+  left: 75.55%;
+  top: 33.33%;
+  transform: translate(0, -50%);
+  margin-left: 0.5cqw;
+}
+
+.anno-2010 {
+  /* Line ends at X=800 (88.88%), Y=250 (55.55%) */
+  left: 88.88%;
+  top: 55.55%;
+  transform: translate(-50%, -100%);
+  margin-top: -0.5cqw;
+}

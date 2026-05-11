@@ -1,0 +1,275 @@
+.slide15-wrapper {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 5rem;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.slide-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.highlight-blue {
+  color: #38bdf8;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.slide15-integrated-visual {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.integrated-svg-container {
+  position: relative;
+  /* Use a max-width and dynamic width based on height to preserve exactly 2:1 aspect ratio */
+  width: min(100%, 120vh);
+  max-width: 1200px;
+  aspect-ratio: 2 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.integrated-bow-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.integrated-node {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Positioning exactly on the SVG line (50% Y) */
+.node-left {
+  left: 15%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.node-center {
+  left: 55%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.node-right {
+  left: 95%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Node Elements */
+.node-icon-hex {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  z-index: 3;
+}
+
+.pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid white;
+  z-index: -1;
+}
+
+.bg-red-glow {
+  background: linear-gradient(135deg, #ef4444, #991b1b);
+  border: 2px solid #fca5a5;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+.bg-blue-glow {
+  background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+  border: 2px solid #93c5fd;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+.bg-green-glow {
+  background: linear-gradient(135deg, #10b981, #064e3b);
+  border: 2px solid #6ee7b7;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+.node-text-content {
+  position: absolute;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  z-index: 2;
+}
+
+/* Place texts in completely safe zones relative to the icons */
+.node-left .node-text-content {
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+}
+
+.node-center .node-text-content {
+  bottom: calc(100% + 20px);
+  left: 20px;
+  width: 280px;
+}
+
+.node-right .node-text-content {
+  top: calc(100% + 20px);
+  right: 0px;
+  width: 260px;
+}
+
+.node-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.text-red { color: #fca5a5; }
+.text-blue { color: #93c5fd; }
+.text-green { color: #6ee7b7; }
+
+.node-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.badge-red { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+.badge-blue { background: rgba(59, 130, 246, 0.2); color: #93c5fd; }
+.badge-green { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
+
+.node-desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.node-desc strong {
+  color: white;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .integrated-svg-container {
+    height: auto;
+  }
+  .node-text-content {
+    width: 240px;
+  }
+}
+
+/* Connecting Lines from text boxes to nodes */
+.node-text-content::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+/* Red Node: Straight line up to icon */
+.node-left .node-text-content::before {
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 20px;
+  border-left: 2px dashed rgba(239, 68, 68, 0.8);
+}
+
+/* Blue Node: Straight line down to icon */
+.node-center .node-text-content::before {
+  bottom: -20px;
+  left: 10px;
+  width: 0;
+  height: 20px;
+  border-left: 2px dashed rgba(59, 130, 246, 0.8);
+}
+
+/* Green Node: Straight line up to icon */
+.node-right .node-text-content::before {
+  top: -20px;
+  right: 30px;
+  width: 0;
+  height: 20px;
+  border-left: 2px dashed rgba(16, 185, 129, 0.8);
+}
+
+@media (max-width: 768px) {
+  .slide15-wrapper {
+    padding: 2rem;
+  }
+  .slide-title {
+    font-size: 1.8rem;
+  }
+  .node-text-content {
+    width: 200px !important;
+    padding: 1rem;
+  }
+  .node-title { font-size: 1rem; }
+  .node-desc { font-size: 0.8rem; }
+  
+  .node-left .node-text-content { right: -50px; }
+  .node-center .node-text-content { 
+    left: 50%; 
+    transform: translateX(-50%);
+  }
+  .node-right .node-text-content { right: -20px; }
+
+  /* Update connecting lines for mobile */
+  .node-left .node-text-content::before {
+    left: 50%;
+  }
+  .node-center .node-text-content::before {
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 20px;
+    border-top: none;
+    border-left: 2px dashed rgba(59, 130, 246, 0.8);
+    border-radius: 0;
+  }
+  .node-right .node-text-content::before {
+    right: 50px;
+  }
+}

@@ -1,0 +1,213 @@
+.slide6-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .slide6-container {
+    width: calc(100vh * 16 / 9);
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .slide6-container {
+    height: calc(100vw * 9 / 16);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+}
+
+/* HEADER */
+.slide6-header {
+  position: absolute;
+  top: 4cqw;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.slide-title {
+  color: #f8fafc;
+  font-size: 2.8cqw;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  margin: 0;
+}
+
+.highlight-text {
+  color: #ef4444;
+  text-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+}
+
+.title-underline {
+  height: 3px;
+  width: 15cqw;
+  background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+  margin-top: 1cqw;
+  border-radius: 2px;
+}
+
+/* SWOT GRID */
+.swot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2cqw;
+  width: 80cqw;
+  height: 60cqw;
+  max-height: 70vh;
+  margin-top: 5cqw;
+  position: relative;
+  z-index: 10;
+}
+
+.swot-card {
+  position: relative;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5cqw;
+  padding: 2.5cqw;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  margin-bottom: 1.5cqw;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1cqw;
+}
+
+.card-header h2 {
+  font-size: 1.8cqw;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.blue-header { color: #38bdf8; border-bottom-color: rgba(56, 189, 248, 0.3); }
+.red-header { color: #ef4444; border-bottom-color: rgba(239, 68, 68, 0.3); }
+.green-header { color: #22c55e; border-bottom-color: rgba(34, 197, 94, 0.3); }
+
+.swot-list {
+  margin: 0;
+  padding-left: 1.5cqw;
+  color: #e2e8f0;
+  font-size: 1.3cqw;
+  line-height: 1.8;
+}
+
+.swot-list li {
+  margin-bottom: 0.8cqw;
+  position: relative;
+}
+
+/* CROSS OUT EFFECT (STRENGTHS) */
+.strengths-card {
+  position: relative;
+}
+
+.cross-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.6));
+}
+
+.dim-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  z-index: 2;
+  pointer-events: none;
+  /* Animate this maybe, but for now just static dim */
+  animation: dimFadeIn 2.5s 1.5s forwards;
+  opacity: 0;
+}
+
+@keyframes dimFadeIn {
+  0% { opacity: 0; }
+  60% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+/* RED HIGHLIGHT EFFECT (WEAKNESS & THREAT) */
+.danger-highlight {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5cqw;
+  border: 3px solid #ef4444;
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.4), inset 0 0 20px rgba(239, 68, 68, 0.2);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ATTACK PROJECTILES */
+.attack-projectile {
+  position: absolute;
+  z-index: 15;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.8));
+}
+
+/* FLOATING ANNOTATION */
+.swot-annotation {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  transform: translate(-50%, -50%) rotate(-10deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+  pointer-events: none;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+}
+
+.annotation-text {
+  background: #ef4444;
+  color: #ffffff;
+  padding: 1cqw 1.5cqw;
+  border-radius: 1cqw;
+  font-size: 1.4cqw;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.3;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+  border: 1px solid #f87171;
+}
+
+.annotation-arrow {
+  color: #ef4444;
+  margin-top: -0.5cqw;
+  margin-left: -5cqw;
+  filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.5));
+}
