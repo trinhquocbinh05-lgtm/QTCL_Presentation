@@ -56,7 +56,7 @@ const Slide16 = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            CẢM ƠN QUÝ THẦY CÔ <br /> <span className="highlight-text">& CÁC BẠN ĐÃ LẮNG NGHE</span>
+            CẢM ƠN THẦY <br /> <span className="highlight-text">& CÁC BẠN ĐÃ LẮNG NGHE</span>
           </motion.h1>
 
           <motion.div 

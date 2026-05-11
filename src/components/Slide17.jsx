@@ -93,7 +93,7 @@ const Slide17 = () => {
               <MessageCircleQuestion size={40} className="qna-header-icon" />
             </div>
             <h3>Q&A SESSION</h3>
-            <p>Mời quý thầy cô và các bạn đặt câu hỏi</p>
+            <p>Mời thầy và các bạn đặt câu hỏi</p>
           </div>
 
           <div className="qna-interactive">
