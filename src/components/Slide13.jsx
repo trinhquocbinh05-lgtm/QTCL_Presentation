@@ -22,16 +22,16 @@ const Slide13 = () => {
   return (
     <div className="slide-container slide13-wrapper">
       <div className="slide-number">13</div>
-      <motion.h2 
+      <motion.h2
         className="slide-title text-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        BÀI HỌC XƯƠNG MÁU VỀ
+        BÀI HỌC XƯƠNG MÁU VỀ MARKETING HÀNG TIÊU DÙNG
       </motion.h2>
 
-      <motion.div 
+      <motion.div
         className="pyramid-container"
         variants={containerVariants}
         initial="hidden"

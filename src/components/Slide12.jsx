@@ -7,18 +7,18 @@ const Slide12 = () => {
   return (
     <div className="slide-container slide12-wrapper">
       <div className="slide-number">12</div>
-      <motion.h2 
+      <motion.h2
         className="slide-title text-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        ĐÚC KẾT CHIẾN LƯỢC
+        ĐÚC KẾT CHIẾN LƯỢC: <span className="highlight-hard">QUYỀN LỰC CỨNG</span> & <span className="highlight-soft">QUYỀN LỰC MỀM</span>
       </motion.h2>
 
       <div className="slide12-content">
         {/* LEFT TEXT */}
-        <motion.div 
+        <motion.div
           className="side-text left-text"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -60,10 +60,10 @@ const Slide12 = () => {
             {/* Scale Base */}
             <path d="M 320 550 L 480 550 L 450 500 L 350 500 Z" fill="url(#gold-grad-dark)" />
             <path d="M 350 500 L 450 500 L 410 320 L 390 320 Z" fill="url(#gold-grad)" />
-            
+
             {/* The Beam (Tilted) */}
             <g transform="translate(400, 320)">
-              <motion.g 
+              <motion.g
                 initial={{ rotate: 0 }}
                 animate={{ rotate: [-8, 8, -8] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -71,10 +71,10 @@ const Slide12 = () => {
               >
                 {/* Beam Line */}
                 <rect x="-250" y="-10" width="500" height="20" fill="url(#gold-grad)" rx="10" />
-                
+
                 {/* Left String & Pan (Counter-Rotated) */}
                 <g transform="translate(-240, 0)">
-                  <motion.g 
+                  <motion.g
                     initial={{ rotate: 0 }}
                     animate={{ rotate: [8, -8, 8] }}
                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -86,20 +86,20 @@ const Slide12 = () => {
                     <line x1="0" y1="0" x2="0" y2="120" stroke="#ca8a04" strokeWidth="2" />
                     {/* Pan */}
                     <path d="M -90 120 Q 0 160 90 120 Z" fill="url(#gold-grad-dark)" stroke="#fef08a" strokeWidth="2" />
-                    
+
                     {/* Left Pan Contents (Hard Power) */}
                     <g transform="translate(-60, 40)">
                       {/* Gold Bars */}
                       <rect x="10" y="50" width="40" height="25" fill="url(#gold-bar)" rx="3" transform="rotate(-15)" />
                       <rect x="40" y="45" width="40" height="25" fill="url(#gold-bar)" rx="3" transform="rotate(-5)" />
                       <rect x="25" y="25" width="40" height="25" fill="url(#gold-bar)" rx="3" transform="rotate(-10)" />
-                      
+
                       {/* Factory and Truck using Lucide Icons wrapped in foreignObject */}
                       <foreignObject x="45" y="-10" width="100" height="80">
-                         <div className="hard-icons">
-                           <Factory size={40} className="icon-factory" />
-                           <Truck size={30} className="icon-truck" />
-                         </div>
+                        <div className="hard-icons">
+                          <Factory size={40} className="icon-factory" />
+                          <Truck size={30} className="icon-truck" />
+                        </div>
                       </foreignObject>
                     </g>
                   </motion.g>
@@ -107,7 +107,7 @@ const Slide12 = () => {
 
                 {/* Right String & Pan (Counter-Rotated) */}
                 <g transform="translate(240, 0)">
-                  <motion.g 
+                  <motion.g
                     initial={{ rotate: 0 }}
                     animate={{ rotate: [8, -8, 8] }}
                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -119,35 +119,35 @@ const Slide12 = () => {
                     <line x1="0" y1="0" x2="0" y2="120" stroke="#ca8a04" strokeWidth="2" />
                     {/* Pan */}
                     <path d="M -90 120 Q 0 160 90 120 Z" fill="url(#gold-grad-dark)" stroke="#fef08a" strokeWidth="2" />
-                    
+
                     {/* Right Pan Contents (Soft Power) */}
                     <g transform="translate(0, 40)">
                       {/* Glowing Aura Base */}
                       <circle cx="0" cy="50" r="40" fill="#0ea5e9" filter="url(#glow-cyan)" opacity="0.4" />
-                      
+
                       <foreignObject x="-75" y="-10" width="150" height="150">
-                         <div className="soft-icons-container">
-                           <Coffee size={55} className="icon-coffee glow-effect" />
-                           
-                           {/* Orbiting nodes */}
-                           <motion.div 
-                             className="orbit-container"
-                             animate={{ rotate: 360 }}
-                             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                           >
-                             <div className="orbit-node node-1"><Heart size={16} /></div>
-                             <div className="orbit-node node-2"><Users size={16} /></div>
-                             <div className="orbit-node node-3"><Zap size={16} /></div>
-                             <div className="orbit-node node-4"><Hexagon size={16} /></div>
-                           </motion.div>
-                         </div>
+                        <div className="soft-icons-container">
+                          <Coffee size={55} className="icon-coffee glow-effect" />
+
+                          {/* Orbiting nodes */}
+                          <motion.div
+                            className="orbit-container"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                          >
+                            <div className="orbit-node node-1"><Heart size={16} /></div>
+                            <div className="orbit-node node-2"><Users size={16} /></div>
+                            <div className="orbit-node node-3"><Zap size={16} /></div>
+                            <div className="orbit-node node-4"><Hexagon size={16} /></div>
+                          </motion.div>
+                        </div>
                       </foreignObject>
                     </g>
                   </motion.g>
                 </g>
               </motion.g>
             </g>
-            
+
             {/* Center Pivot Cover */}
             <circle cx="400" cy="320" r="25" fill="url(#gold-grad-dark)" stroke="#fef08a" strokeWidth="3" />
             <circle cx="400" cy="320" r="10" fill="#fef08a" />
@@ -155,7 +155,7 @@ const Slide12 = () => {
         </div>
 
         {/* RIGHT TEXT */}
-        <motion.div 
+        <motion.div
           className="side-text right-text"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -167,7 +167,7 @@ const Slide12 = () => {
       </div>
 
       {/* BOTTOM BANNER */}
-      <motion.div 
+      <motion.div
         className="bottom-banner-slide12"
         initial={{ opacity: 0, scale: 0.9, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
