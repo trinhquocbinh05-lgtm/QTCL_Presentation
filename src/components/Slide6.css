@@ -30,7 +30,7 @@
 /* HEADER */
 .slide6-header {
   position: absolute;
-  top: 4cqw;
+  top: 2cqw;
   left: 0;
   width: 100%;
   z-index: 20;
@@ -50,6 +50,9 @@
   letter-spacing: 2px;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
   margin: 0;
+  line-height: 1.6;
+  padding-top: 0.5em;
+  padding-bottom: 0.2em;
 }
 
 .highlight-text {
@@ -74,7 +77,7 @@
   width: 80cqw;
   height: 60cqw;
   max-height: 70vh;
-  margin-top: 5cqw;
+  margin-top: 8cqw;
   position: relative;
   z-index: 10;
 }
