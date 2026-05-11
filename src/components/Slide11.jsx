@@ -12,7 +12,7 @@ const Slide11 = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Điểm Nút 2010: Quyết Định Rút Lui Chiến Lược
+        Điểm nút 2010: Quyết định rút lui chiến lược
       </motion.h2>
 
       <div className="slide11-content">

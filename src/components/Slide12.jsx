@@ -13,7 +13,7 @@ const Slide12 = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        ĐÚC KẾT CHIẾN LƯỢC: <span className="highlight-hard">Quyền Lực Cứng</span> vs. <span className="highlight-soft">Quyền Lực Mềm</span>
+        Đúc kết chiến lược
       </motion.h2>
 
       <div className="slide12-content">
