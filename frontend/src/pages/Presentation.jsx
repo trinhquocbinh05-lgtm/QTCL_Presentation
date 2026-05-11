@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, QrCode, X } from 'lucide-react';
+import { QRCodeSVG } from 'qrcode.react';
 import Slide0 from '../components/Slide0';
 import Slide1 from '../components/Slide1';
 import Slide2 from '../components/Slide2';
@@ -23,6 +24,7 @@ import Slide17 from '../components/Slide17';
 function Presentation() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeNav, setActiveNav] = useState(null); // 'left' or 'right'
+  const [showQR, setShowQR] = useState(false);
   const totalSlides = 21; // Updated for Slide 6, 8, 15 multi-step
 
   useEffect(() => {
@@ -104,6 +106,49 @@ function Presentation() {
           <ChevronRight size={40} />
         </button>
       </div>
+
+      {/* Floating QR Button */}
+      <button className="qr-floating-button" onClick={() => setShowQR(true)}>
+        <QrCode size={24} />
+      </button>
+
+      {/* QR Code Modal */}
+      <AnimatePresence>
+        {showQR && (
+          <motion.div 
+            className="qr-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowQR(false)}
+          >
+            <motion.div 
+              className="qr-modal-content"
+              initial={{ scale: 0.8, y: 50, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.8, y: 50, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="qr-close-button" onClick={() => setShowQR(false)}>
+                <X size={24} />
+              </button>
+              <h2>Quét mã để đặt câu hỏi</h2>
+              <p>Sử dụng điện thoại của bạn để quét mã QR và tham gia Q&A.</p>
+              <div className="qr-code-wrapper">
+                <QRCodeSVG 
+                  value={`${window.location.origin}/guest`} 
+                  size={240}
+                  bgColor={"#ffffff"}
+                  fgColor={"#000000"}
+                  level={"Q"}
+                  includeMargin={true}
+                  style={{ borderRadius: '12px' }}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
