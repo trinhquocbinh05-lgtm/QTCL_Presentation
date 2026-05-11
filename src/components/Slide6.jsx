@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Target, TrendingUp, AlertTriangle, XCircle, ArrowUpRight, ArrowLeft, ArrowUpLeft } from 'lucide-react';
 import './Slide6.css';
 
 const Slide6 = () => {
+  const [isAnimated, setIsAnimated] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Intercept right arrow or space to trigger animation instead of slide change
+      if ((e.key === 'ArrowRight' || e.key === ' ') && !isAnimated) {
+        e.stopPropagation();
+        setIsAnimated(true);
+      }
+    };
+    // Use capture phase to intercept the event before App.jsx does
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
+  }, [isAnimated]);
+
+  const handleSlideClick = () => {
+    if (!isAnimated) {
+      setIsAnimated(true);
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -20,69 +41,8 @@ const Slide6 = () => {
     }
   };
 
-  // The giant red X over Strengths - 6s loop
-  const crossOutVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: [0, 0, 1, 1, 1, 0], 
-      opacity: [0, 0, 1, 0.3, 0.3, 0],
-      transition: { 
-        duration: 6, 
-        repeat: Infinity,
-        times: [0, 0.25, 0.35, 0.45, 0.8, 1],
-        ease: "easeInOut" 
-      }
-    }
-  };
-
-  // The red glowing highlight for Weakness and Threat
-  const highlightVariants = {
-    hidden: { opacity: 0, scale: 1 },
-    visible: { 
-      opacity: [0, 1, 0.7, 1], 
-      scale: [1, 1.05, 1.02, 1.05],
-      transition: { 
-        duration: 2, 
-        delay: 2, 
-        repeat: Infinity,
-        repeatType: "reverse"
-      }
-    }
-  };
-
-  // Attack projectiles to show Weaknesses/Threats overpowering Strengths
-  const attackArrowHorizontal = {
-    hidden: { opacity: 0, x: "8cqw" },
-    visible: {
-      opacity: [0, 0, 1, 1, 0, 0],
-      x: ["8cqw", "8cqw", "0cqw", "-8cqw", "-16cqw", "-16cqw"],
-      scale: [0.8, 0.8, 1.3, 1.3, 0.8, 0.8],
-      transition: { duration: 6, repeat: Infinity, times: [0, 0.15, 0.2, 0.25, 0.3, 1], ease: "linear" }
-    }
-  };
-
-  const attackArrowDiagonal = {
-    hidden: { opacity: 0, x: "8cqw", y: "8cqw" },
-    visible: {
-      opacity: [0, 0, 1, 1, 0, 0],
-      x: ["8cqw", "8cqw", "0cqw", "-8cqw", "-16cqw", "-16cqw"],
-      y: ["8cqw", "8cqw", "0cqw", "-8cqw", "-16cqw", "-16cqw"],
-      scale: [0.8, 0.8, 1.3, 1.3, 0.8, 0.8],
-      transition: { duration: 6, repeat: Infinity, times: [0, 0.18, 0.23, 0.28, 0.33, 1], ease: "linear" } // Slightly delayed after horizontal
-    }
-  };
-
-  // The text annotation
-  const annotationVariants = {
-    hidden: { opacity: 0, x: -50, rotate: 10 },
-    visible: { 
-      opacity: 1, x: 0, rotate: -10,
-      transition: { duration: 0.8, delay: 2.5, type: "spring" }
-    }
-  };
-
   return (
-    <div className="slide-container slide6-container">
+    <div className="slide-container slide6-container" onClick={handleSlideClick} style={{ cursor: isAnimated ? 'default' : 'pointer' }}>
       <div className="slide-number">06</div>
       {/* Title */}
       <motion.div 
@@ -108,10 +68,10 @@ const Slide6 = () => {
           <motion.div 
             className="swot-card strengths-card" 
             style={{ flex: 1 }}
-            animate={{ 
+            animate={isAnimated ? { 
               scale: [1, 1, 0.95, 0.95, 0.95, 1],
               filter: ["grayscale(0%)", "grayscale(0%)", "grayscale(80%)", "grayscale(80%)", "grayscale(80%)", "grayscale(0%)"]
-            }}
+            } : { scale: 1, filter: "grayscale(0%)" }}
             transition={{ duration: 6, repeat: Infinity, times: [0, 0.25, 0.35, 0.45, 0.8, 1], ease: "easeInOut" }}
           >
             <div className="card-header blue-header">
@@ -126,13 +86,24 @@ const Slide6 = () => {
             
             {/* Animated Red Cross */}
             <svg className="cross-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <motion.line x1="10" y1="10" x2="90" y2="90" stroke="#ef4444" strokeWidth="4" strokeLinecap="round" variants={crossOutVariants} />
-              <motion.line x1="90" y1="10" x2="10" y2="90" stroke="#ef4444" strokeWidth="4" strokeLinecap="round" variants={crossOutVariants} />
+              <motion.line 
+                x1="10" y1="10" x2="90" y2="90" stroke="#ef4444" strokeWidth="4" strokeLinecap="round" 
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isAnimated ? { pathLength: [0, 0, 1, 1, 1, 0], opacity: [0, 0, 1, 0.3, 0.3, 0] } : { pathLength: 0, opacity: 0 }}
+                transition={{ duration: 6, repeat: Infinity, times: [0, 0.25, 0.35, 0.45, 0.8, 1], ease: "easeInOut" }} 
+              />
+              <motion.line 
+                x1="90" y1="10" x2="10" y2="90" stroke="#ef4444" strokeWidth="4" strokeLinecap="round" 
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isAnimated ? { pathLength: [0, 0, 1, 1, 1, 0], opacity: [0, 0, 1, 0.3, 0.3, 0] } : { pathLength: 0, opacity: 0 }}
+                transition={{ duration: 6, repeat: Infinity, times: [0, 0.25, 0.35, 0.45, 0.8, 1], ease: "easeInOut" }} 
+              />
             </svg>
             
             <motion.div 
               className="dim-overlay"
-              animate={{ opacity: [0, 0, 0.6, 0.3, 0.3, 0] }}
+              initial={{ opacity: 0 }}
+              animate={isAnimated ? { opacity: [0, 0, 0.6, 0.3, 0.3, 0] } : { opacity: 0 }}
               transition={{ duration: 6, repeat: Infinity, times: [0, 0.25, 0.35, 0.45, 0.8, 1], ease: "easeInOut" }}
               style={{ animation: 'none' }}
             ></motion.div>
@@ -141,7 +112,11 @@ const Slide6 = () => {
 
         {/* WEAKNESSES */}
         <motion.div className="swot-card weaknesses-card" variants={itemVariants}>
-          <motion.div className="danger-highlight" variants={highlightVariants}></motion.div>
+          <motion.div className="danger-highlight" 
+            initial={{ opacity: 0, scale: 1 }}
+            animate={isAnimated ? { opacity: [0, 1, 0.7, 1], scale: [1, 1.05, 1.02, 1.05] } : { opacity: 0, scale: 1 }}
+            transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+          ></motion.div>
           <div className="card-header red-header">
             <XCircle className="swot-icon" size={28} />
             <h2>WEAKNESSES</h2>
@@ -166,7 +141,11 @@ const Slide6 = () => {
 
         {/* THREATS */}
         <motion.div className="swot-card threats-card" variants={itemVariants}>
-          <motion.div className="danger-highlight" variants={highlightVariants}></motion.div>
+          <motion.div className="danger-highlight" 
+            initial={{ opacity: 0, scale: 1 }}
+            animate={isAnimated ? { opacity: [0, 1, 0.7, 1], scale: [1, 1.05, 1.02, 1.05] } : { opacity: 0, scale: 1 }}
+            transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+          ></motion.div>
           <div className="card-header red-header">
             <AlertTriangle className="swot-icon" size={28} />
             <h2>THREATS</h2>
@@ -181,7 +160,13 @@ const Slide6 = () => {
         <motion.div 
           className="attack-projectile"
           style={{ top: '25%', left: '50%', marginTop: '-20px', marginLeft: '-20px' }}
-          variants={attackArrowHorizontal}
+          initial={{ opacity: 0, x: "8cqw" }}
+          animate={isAnimated ? {
+            opacity: [0, 0, 1, 1, 0, 0],
+            x: ["8cqw", "8cqw", "0cqw", "-8cqw", "-16cqw", "-16cqw"],
+            scale: [0.8, 0.8, 1.3, 1.3, 0.8, 0.8]
+          } : { opacity: 0, x: "8cqw" }}
+          transition={{ duration: 6, repeat: Infinity, times: [0, 0.15, 0.2, 0.25, 0.3, 1], ease: "linear" }}
         >
           <ArrowLeft size={48} color="#ef4444" strokeWidth={3} />
         </motion.div>
@@ -189,13 +174,24 @@ const Slide6 = () => {
         <motion.div 
           className="attack-projectile"
           style={{ top: '50%', left: '50%', marginTop: '-20px', marginLeft: '-20px' }}
-          variants={attackArrowDiagonal}
+          initial={{ opacity: 0, x: "8cqw", y: "8cqw" }}
+          animate={isAnimated ? {
+            opacity: [0, 0, 1, 1, 0, 0],
+            x: ["8cqw", "8cqw", "0cqw", "-8cqw", "-16cqw", "-16cqw"],
+            y: ["8cqw", "8cqw", "0cqw", "-8cqw", "-16cqw", "-16cqw"],
+            scale: [0.8, 0.8, 1.3, 1.3, 0.8, 0.8]
+          } : { opacity: 0, x: "8cqw", y: "8cqw" }}
+          transition={{ duration: 6, repeat: Infinity, times: [0, 0.18, 0.23, 0.28, 0.33, 1], ease: "linear" }}
         >
           <ArrowUpLeft size={48} color="#ef4444" strokeWidth={3} />
         </motion.div>
 
         {/* Floating Annotation */}
-        <motion.div className="swot-annotation" variants={annotationVariants}>
+        <motion.div className="swot-annotation" 
+          initial={{ opacity: 0, x: -50, rotate: 10 }}
+          animate={isAnimated ? { opacity: 1, x: 0, rotate: -10 } : { opacity: 0, x: -50, rotate: 10 }}
+          transition={{ duration: 0.8, type: "spring" }}
+        >
           <div className="annotation-text">
             Tài chính không thể mua được<br/>thói quen khẩu vị.
           </div>
@@ -207,3 +203,4 @@ const Slide6 = () => {
 };
 
 export default Slide6;
+
