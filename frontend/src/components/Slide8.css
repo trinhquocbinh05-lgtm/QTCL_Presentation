@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 2rem 4rem;
+  padding: 1rem 4rem;
   overflow: hidden;
   height: 100%;
 }
@@ -18,12 +18,11 @@
 .bg-glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.3;
+  filter: blur(120px);
 }
 
-.blue-glow-8 { top: 20%; left: 10%; width: 400px; height: 400px; background: rgba(59, 130, 246, 0.2); }
-.red-glow-8 { top: 30%; right: 10%; width: 500px; height: 500px; background: rgba(239, 68, 68, 0.15); }
+.blue-glow-8 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(59, 130, 246, 0.15); }
+.red-glow-8 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: rgba(239, 68, 68, 0.15); }
 
 .z-10 { z-index: 10; width: 100%; }
 
@@ -36,14 +35,34 @@
 }
 .slide-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.6;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+
+.title-underline {
+  height: 3px;
+  width: 200px;
+  background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+  margin-top: 0.5rem;
+  border-radius: 2px;
 }
 
 .slide-subtitle {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 800;
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #ef4444;
@@ -53,12 +72,12 @@
 .objective-box {
   width: 100%;
   max-width: 1100px;
-  padding: 1.5rem 2rem;
+  padding: 1rem 2rem;
   border-radius: 16px;
   background: rgba(15, 23, 42, 0.7); 
   border-left: 6px solid #ef4444;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  margin-bottom: 2rem;
+  margin-bottom: 0.8rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -91,10 +110,10 @@
 }
 
 .objective-box p {
-  font-size: 1.3rem;
-  line-height: 1.6;
+  font-size: 1.2rem;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.95);
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
 }
 
 .objective-box strong {
@@ -108,7 +127,7 @@
 .comparison-table-wrapper {
   width: 100%;
   max-width: 1200px;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .comparison-grid {
@@ -123,7 +142,7 @@
 }
 
 .grid-cell {
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,7 +169,7 @@
 
 .header-cell {
   background: rgba(0, 0, 0, 0.3);
-  padding: 1.5rem 1rem;
+  padding: 1.2rem 1rem;
 }
 
 .empty-header {
@@ -158,9 +177,9 @@
 }
 
 .brand-header h3 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 800;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
   text-transform: uppercase;
 }
 
@@ -183,7 +202,7 @@
 .text-red-light { color: #fca5a5; }
 
 .row-label {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   background: rgba(255, 255, 255, 0.03);
   color: #94a3b8;
@@ -192,10 +211,10 @@
 }
 
 .content-cell {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.9);
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.2rem;
 }
 
 /* The giant X overlay specifically covers the 2x3 content area */
@@ -223,7 +242,7 @@
   gap: 1rem;
   background: rgba(239, 68, 68, 0.1);
   border: 2px solid rgba(239, 68, 68, 0.4);
-  padding: 1rem 3rem;
+  padding: 0.8rem 2.5rem;
   border-radius: 60px;
   box-shadow: 0 15px 35px rgba(239, 68, 68, 0.2);
   animation: pulse-box 3s ease-in-out infinite;
@@ -252,7 +271,7 @@
 }
 
 .conclusion-text {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: white;
   margin: 0;
 }
@@ -285,8 +304,8 @@
     font-size: 1.2rem;
   }
   .objective-box {
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
   }
   .objective-box p {
     font-size: 1.2rem;
@@ -320,7 +339,7 @@
     padding: 1rem 0.5rem;
   }
   .slide-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
   .objective-label {
     font-size: 1rem;
@@ -345,10 +364,11 @@
     padding: 0.5rem;
   }
   .conclusion-box {
-    padding: 1rem;
+    padding: 0.8rem;
     flex-direction: column;
     text-align: center;
     gap: 0.5rem;
+    margin-top: 0.5rem;
   }
   .conclusion-badge {
     font-size: 1rem;

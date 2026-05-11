@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { AlertCircle, Target, TrendingDown } from 'lucide-react';
 import './Slide8.css';
 
-const Slide8 = () => {
+const Slide8 = ({ isAnimated }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -22,7 +22,7 @@ const Slide8 = () => {
     visible: { 
       pathLength: 1, 
       opacity: 0.8,
-      transition: { duration: 1.5, delay: 2, ease: "easeInOut" }
+      transition: { duration: 1.5, delay: 0.2, ease: "easeInOut" }
     }
   };
 
@@ -108,36 +108,44 @@ const Slide8 = () => {
             </motion.div>
 
             {/* SVG Overlay for the giant X */}
-            <div className="x-overlay-container">
-              <svg className="giant-x" preserveAspectRatio="none" viewBox="0 0 100 100">
-                <motion.line 
-                  x1="0" y1="0" x2="100" y2="100" 
-                  stroke="#ef4444" strokeWidth="3" 
-                  strokeLinecap="round"
-                  variants={crossOutVariants}
-                />
-                <motion.line 
-                  x1="100" y1="0" x2="0" y2="100" 
-                  stroke="#ef4444" strokeWidth="3" 
-                  strokeLinecap="round"
-                  variants={crossOutVariants}
-                />
-              </svg>
-            </div>
+            {isAnimated && (
+              <div className="x-overlay-container">
+                <svg className="giant-x" preserveAspectRatio="none" viewBox="0 0 100 100">
+                  <motion.line 
+                    x1="0" y1="0" x2="100" y2="100" 
+                    stroke="#ef4444" strokeWidth="3" 
+                    strokeLinecap="round"
+                    variants={crossOutVariants}
+                    initial="hidden"
+                    animate="visible"
+                  />
+                  <motion.line 
+                    x1="100" y1="0" x2="0" y2="100" 
+                    stroke="#ef4444" strokeWidth="3" 
+                    strokeLinecap="round"
+                    variants={crossOutVariants}
+                    initial="hidden"
+                    animate="visible"
+                  />
+                </svg>
+              </div>
+            )}
           </div>
         </motion.div>
 
-        <motion.div 
-          className="conclusion-box"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 3.5 }}
-        >
-          <div className="conclusion-badge">CHỐT HẠ</div>
-          <p className="conclusion-text">
-            Đại sứ thương hiệu <strong>KHÔNG CÓ SỰ TƯƠNG ĐỒNG</strong> thuộc tính với sản phẩm.
-          </p>
-        </motion.div>
+        {isAnimated && (
+          <motion.div 
+            className="conclusion-box"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 1.5 }}
+          >
+            <div className="conclusion-badge">CHỐT HẠ</div>
+            <p className="conclusion-text">
+              Đại sứ thương hiệu <strong>KHÔNG CÓ SỰ TƯƠNG ĐỒNG</strong> thuộc tính với sản phẩm.
+            </p>
+          </motion.div>
+        )}
       </div>
     </div>
   );

@@ -3,28 +3,7 @@ import { motion } from 'framer-motion';
 import { Target, TrendingUp, AlertTriangle, XCircle, ArrowUpRight, ArrowLeft, ArrowUpLeft } from 'lucide-react';
 import './Slide6.css';
 
-const Slide6 = () => {
-  const [isAnimated, setIsAnimated] = useState(false);
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      // Intercept right arrow or space to trigger animation instead of slide change
-      if ((e.key === 'ArrowRight' || e.key === ' ') && !isAnimated) {
-        e.stopPropagation();
-        setIsAnimated(true);
-      }
-    };
-    // Use capture phase to intercept the event before App.jsx does
-    window.addEventListener('keydown', handleKeyDown, true);
-    return () => window.removeEventListener('keydown', handleKeyDown, true);
-  }, [isAnimated]);
-
-  const handleSlideClick = () => {
-    if (!isAnimated) {
-      setIsAnimated(true);
-    }
-  };
-
+const Slide6 = ({ isAnimated = false }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -42,7 +21,7 @@ const Slide6 = () => {
   };
 
   return (
-    <div className="slide-container slide6-container" onClick={handleSlideClick} style={{ cursor: isAnimated ? 'default' : 'pointer' }}>
+    <div className="slide-container slide6-container">
       <div className="slide-number">06</div>
       {/* Title */}
       <motion.div 

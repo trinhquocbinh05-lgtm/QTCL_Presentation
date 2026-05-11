@@ -28,7 +28,7 @@ const Slide13 = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        BÀI HỌC XƯƠNG MÁU VỀ MARKETING HÀNG TIÊU DÙNG
+        Bài học xương máu về marketing hàng tiêu dùng
       </motion.h2>
 
       <motion.div
