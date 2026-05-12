@@ -34,4 +34,35 @@ router.post('/', async (req, res) => {
   }
 });
 
+// PATCH update a question's answer status
+router.patch('/:id', async (req, res) => {
+  try {
+    const { answered, answerContent } = req.body;
+    const updatedQuestion = await Question.findByIdAndUpdate(
+      req.params.id,
+      { answered, answerContent },
+      { new: true }
+    );
+    if (!updatedQuestion) {
+      return res.status(404).json({ message: 'Không tìm thấy câu hỏi.' });
+    }
+    res.json(updatedQuestion);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// DELETE a question
+router.delete('/:id', async (req, res) => {
+  try {
+    const deletedQuestion = await Question.findByIdAndDelete(req.params.id);
+    if (!deletedQuestion) {
+      return res.status(404).json({ message: 'Không tìm thấy câu hỏi.' });
+    }
+    res.json({ message: 'Đã xóa câu hỏi thành công.' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 export default router;
