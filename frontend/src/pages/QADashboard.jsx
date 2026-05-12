@@ -11,6 +11,8 @@ const QADashboard = () => {
   const [loading, setLoading] = useState(true);
   const [answeringId, setAnsweringId] = useState(null);
   const [answerText, setAnswerText] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
 
   const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
@@ -39,9 +41,10 @@ const QADashboard = () => {
     try {
       await axios.delete(`${apiUrl}/api/questions/${id}`);
       setQuestions(questions.filter(q => q._id !== id));
+      alert('Đã xóa câu hỏi thành công!');
     } catch (err) {
       console.error('Failed to delete question:', err);
-      alert('Không thể xóa câu hỏi. Vui lòng thử lại.');
+      alert('Không thể xóa câu hỏi: ' + (err.response?.data?.message || err.message));
     }
   };
 
@@ -53,6 +56,7 @@ const QADashboard = () => {
       setQuestions(questions.map(q => q._id === id ? res.data : q));
     } catch (err) {
       console.error('Failed to update question status:', err);
+      alert('Không thể cập nhật trạng thái: ' + (err.response?.data?.message || err.message));
     }
   };
 
@@ -65,11 +69,23 @@ const QADashboard = () => {
       setQuestions(questions.map(q => q._id === id ? res.data : q));
       setAnsweringId(null);
       setAnswerText('');
+      alert('Cập nhật câu trả lời thành công!');
     } catch (err) {
       console.error('Failed to submit answer:', err);
-      alert('Không thể cập nhật câu trả lời.');
+      alert('Không thể cập nhật câu trả lời: ' + (err.response?.data?.message || err.message));
     }
   };
+
+  const totalPages = Math.ceil(questions.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentQuestions = questions.slice(indexOfFirstItem, indexOfLastItem);
+
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(totalPages);
+    }
+  }, [questions.length, currentPage, totalPages]);
 
   return (
     <div className="page-container">
@@ -81,7 +97,7 @@ const QADashboard = () => {
           <h1 className="dashboard-title">HỆ THỐNG <span className="highlight-blue">Q&A</span></h1>
         </div>
         <button className="glass-btn btn-secondary refresh-btn" onClick={fetchQuestions}>
-          <RefreshCw size={18} className={loading ? 'animate-spin' : ''} style={{ marginRight: '8px' }} />
+          <RefreshCw size={16} className={loading ? 'animate-spin' : ''} style={{ marginRight: '6px' }} />
           Làm mới
         </button>
       </div>
@@ -101,12 +117,13 @@ const QADashboard = () => {
           <p>Hãy mời khán giả đặt câu hỏi thông qua trang Khách.</p>
         </motion.div>
       ) : (
-        <motion.div 
-          className="questions-grid"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          {questions.map((q, index) => (
+        <>
+          <motion.div 
+            className="questions-grid"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            {currentQuestions.map((q, index) => (
             <motion.div 
               key={q._id} 
               className={`question-card glass-card ${q.answered ? 'card-answered' : ''}`}
@@ -126,7 +143,7 @@ const QADashboard = () => {
                     onClick={() => handleToggleAnswered(q._id, q.answered)}
                     title={q.answered ? "Đánh dấu chưa trả lời" : "Đánh dấu đã trả lời"}
                   >
-                    <CheckCircle size={18} />
+                    <CheckCircle size={20} />
                   </button>
                   <button 
                     className="icon-btn"
@@ -136,14 +153,14 @@ const QADashboard = () => {
                     }}
                     title="Viết câu trả lời"
                   >
-                    <MessageCircle size={18} />
+                    <MessageCircle size={20} />
                   </button>
                   <button 
                     className="icon-btn btn-delete"
                     onClick={() => handleDelete(q._id)}
                     title="Xóa câu hỏi"
                   >
-                    <Trash2 size={18} />
+                    <Trash2 size={20} />
                   </button>
                 </div>
               </div>
@@ -189,7 +206,32 @@ const QADashboard = () => {
               </p>
             </motion.div>
           ))}
-        </motion.div>
+          </motion.div>
+          
+          {totalPages > 1 && (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem', gap: '1rem' }}>
+              <button 
+                className="glass-btn btn-secondary btn-small"
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                style={{ opacity: currentPage === 1 ? 0.5 : 1, cursor: currentPage === 1 ? 'not-allowed' : 'pointer', minWidth: '80px' }}
+              >
+                Trước
+              </button>
+              <span style={{ fontSize: '1rem', color: '#cbd5e1', fontWeight: 500 }}>
+                Trang {currentPage} / {totalPages}
+              </span>
+              <button 
+                className="glass-btn btn-secondary btn-small"
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                style={{ opacity: currentPage === totalPages ? 0.5 : 1, cursor: currentPage === totalPages ? 'not-allowed' : 'pointer', minWidth: '80px' }}
+              >
+                Sau
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
