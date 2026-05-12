@@ -6,30 +6,30 @@ const callouts = [
   { 
     id: 1, 
     title: "CẤU TRÚC YẾU:", 
-    desc: "Định vị sản phẩm không rõ ràng.<br/>(<span class=\"highlight-red\">Độ bền: 20%</span>)", 
-    x: 1200, y: 50, w: 850, h: 320,
-    line: "M 1200 210 L 950 210 L 950 598 L 712 598"
+    desc: "Định vị sản phẩm không rõ ràng.<br/>(<span class=\"highlight-red\">Độ nhận diện: 20%</span>)", 
+    x: 1650, y: 50, w: 850, h: 320,
+    line: "M 1650 210 L 1050 210 L 1050 598 L 712 598"
   },
   { 
     id: 2, 
     title: "LỖI ĐỊNH VỊ VĂN HÓA:", 
     desc: "Phản ứng tiêu cực từ người tiêu dùng.<br/>(<span class=\"highlight-red\">Mức độ: Cao</span>)", 
-    x: 1250, y: 400, w: 800, h: 320,
-    line: "M 1250 560 L 950 560 L 950 758 L 792 758"
+    x: 1700, y: 400, w: 800, h: 320,
+    line: "M 1700 560 L 1050 560 L 1050 758 L 792 758"
   },
   { 
     id: 3, 
     title: "HỆ THỐNG PHÂN PHỐI LỖI:", 
     desc: "Cạnh tranh nội bộ và thiếu hiệu quả.<br/>(<span class=\"highlight-red\">Tác động: Nghiêm trọng</span>)", 
-    x: 1200, y: 750, w: 850, h: 320,
-    line: "M 1200 910 L 950 910 L 950 1030 L 728 1030"
+    x: 1650, y: 750, w: 850, h: 320,
+    line: "M 1650 910 L 1050 910 L 1050 1030 L 728 1030"
   },
   { 
     id: 4, 
     title: "CƠ CHẾ SỤP ĐỔ:", 
     desc: "Chiến lược marketing thiếu liên kết.<br/>(<span class=\"highlight-red\">Kết quả: Ngừng hoạt động 2010</span>)", 
-    x: 1150, y: 1100, w: 900, h: 320,
-    line: "M 1150 1260 L 950 1260 L 950 1190 L 664 1190"
+    x: 1600, y: 1100, w: 900, h: 320,
+    line: "M 1600 1260 L 1050 1260 L 1050 1190 L 664 1190"
   }
 ];
 
@@ -69,19 +69,19 @@ const cupElements = (
     <path d="M 530 320 C 680 320, 680 480, 500 480" fill="none" stroke="#64748b" strokeWidth="1" />
     <path d="M 545 270 C 740 240, 770 460, 525 530" fill="none" stroke="#475569" strokeWidth="1" strokeDasharray="3 3" />
     
-    {/* Moment Logo/Text */}
+    {/* Vinamilk Logo/Text */}
     <g transform="translate(350, 420) rotate(-10)">
       <text 
         x="0" 
         y="-10" 
         fontFamily="sans-serif" 
-        fontSize="55" 
+        fontSize="45" 
         fontWeight="800" 
         fill="rgba(255, 255, 255, 0.25)" 
         textAnchor="middle" 
-        letterSpacing="8"
+        letterSpacing="6"
       >
-        MOMENT
+        VINAMILK
       </text>
       <text 
         x="0" 
@@ -93,7 +93,7 @@ const cupElements = (
         textAnchor="middle" 
         letterSpacing="6"
       >
-        COFFEE
+        CAFÉ
       </text>
     </g>
   </g>
@@ -154,9 +154,7 @@ const Slide1 = () => {
             }}
           >
             Khám Nghiệm Một Thất Bại:<br/>
-            Chiến lược Marketing của<br/>
-            Vinamilk Café<br/>
-            (2005-2010)
+            Chiến lược Marketing của Vinamilk Café (2005-2010)
           </motion.h1>
           <motion.div 
             className="red-divider" 
@@ -176,9 +174,8 @@ const Slide1 = () => {
               }
             }}
           >
-            Báo cáo phân tích chuyên sâu: Căn nguyên của<br/>
-            sự sụp đổ từ góc nhìn chiến lược sản phẩm, định<br/>
-            vị văn hóa <strong>và phân phối.</strong>
+            Báo cáo phân tích chuyên sâu:<br/>
+            Căn nguyên của sự sụp đổ từ góc nhìn chiến lược sản phẩm, định vị văn hóa <strong>và phân phối.</strong>
           </motion.p>
         </motion.div>
       </div>
@@ -186,7 +183,7 @@ const Slide1 = () => {
       {/* Right Panel */}
       <div className="right-panel">
         <div className="blueprint-container">
-          <svg viewBox="0 0 2100 1500" className="cup-svg">
+          <svg viewBox="-200 0 2900 1500" className="cup-svg">
             <defs>
               <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                 <polygon points="0 0, 10 3.5, 0 7" fill="#e53935" />
