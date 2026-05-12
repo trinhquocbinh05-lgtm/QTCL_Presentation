@@ -3,10 +3,11 @@
   flex-direction: row;
   width: 100vw;
   height: 100vh;
-  margin: 0 auto;
-  padding: 4% 4% 4% 4%;
+  margin: 0;
+  padding: 3% 2%;
   box-sizing: border-box;
   align-items: center;
+  justify-content: space-between;
   gap: 2%;
   position: relative;
 }
@@ -14,6 +15,7 @@
 @media (min-aspect-ratio: 16/9) {
   .slide-container {
     width: calc(100vh * 16 / 9);
+    margin: 0 auto;
   }
 }
 
@@ -28,11 +30,11 @@
 }
 
 .left-panel {
-  flex: 0 0 45%;
+  flex: 0 0 42%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 2%;
+  margin-left: 0;
 }
 
 .status-badge {
@@ -49,7 +51,7 @@
 }
 
 .main-title {
-  font-size: clamp(1.8rem, 2.5vw, 3.5rem);
+  font-size: clamp(2rem, 3vw, 4rem);
   font-weight: 800;
   line-height: 1.2;
   margin: 0 0 20px 0;
@@ -58,10 +60,10 @@
 }
 
 .subtitle {
-  font-size: clamp(1rem, 1.4vw, 1.8rem);
+  font-size: clamp(1.2rem, 1.8vw, 2.2rem);
   color: var(--text-secondary);
   line-height: 1.6;
-  max-width: 95%;
+  max-width: 100%;
 }
 
 .slide-number {
@@ -77,10 +79,10 @@
 }
 
 .right-panel {
-  flex: 1;
+  flex: 0 0 55%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   position: relative;
   height: 100%;
 }
@@ -101,14 +103,13 @@
   overflow: visible;
 }
 
-/* Callouts */
 .callout-box {
   position: absolute;
   background: rgba(11, 31, 56, 0.85);
   backdrop-filter: blur(8px);
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  border: 4px solid rgba(255, 255, 255, 0.2);
   padding: 40px;
-  border-radius: 12px;
+  border-radius: 20px;
   width: 100%;
   box-sizing: border-box;
   z-index: 5;
@@ -124,7 +125,7 @@
   }
   50% {
     border-color: rgba(229, 57, 53, 1);
-    box-shadow: 0 0 40px rgba(229, 57, 53, 0.9), inset 0 0 25px rgba(229, 57, 53, 0.4);
+    box-shadow: 0 0 30px rgba(229, 57, 53, 0.7), inset 0 0 15px rgba(229, 57, 53, 0.3);
     background: rgba(40, 20, 20, 0.95);
   }
   100% {
@@ -141,7 +142,7 @@
 .callout-box:hover {
   animation: none;
   border-color: #e53935;
-  box-shadow: 0 0 25px rgba(229, 57, 53, 0.6);
+  box-shadow: 0 0 20px rgba(229, 57, 53, 0.5);
   background: rgba(15, 40, 70, 0.95);
 }
 
@@ -155,27 +156,27 @@
 }
 
 .callout-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background-color: #e53935;
   border-radius: 50%;
-  box-shadow: 0 0 8px #e53935;
+  box-shadow: 0 0 6px #e53935;
 }
 
 .callout-title {
   font-family: monospace;
-  font-size: 50px;
+  font-size: 55px;
   color: #a0aec0;
   font-weight: 700;
   letter-spacing: 2px;
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .callout-desc {
   font-size: 40px;
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0;
 }
 
