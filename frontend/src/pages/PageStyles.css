@@ -255,8 +255,129 @@
   .glass-btn {
     width: 100%;
   }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .refresh-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
   
   .questions-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Dashboard Card Actions */
+.card-answered {
+  opacity: 0.75;
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.action-buttons-group {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.4);
+  padding: 4px;
+  border-radius: 20px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #94a3b8;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.icon-btn:hover {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.icon-btn.btn-answered {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.icon-btn.btn-delete:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* Question Content Styles */
+.answer-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(30, 58, 138, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+}
+
+.answer-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #60a5fa;
+  margin-bottom: 0.25rem;
+}
+
+.answer-text {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  white-space: pre-wrap;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.answer-form {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.answer-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.btn-close:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  min-width: auto;
 }

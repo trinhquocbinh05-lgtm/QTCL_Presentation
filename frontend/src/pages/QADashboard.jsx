@@ -76,19 +76,19 @@ const QADashboard = () => {
       <div className="dashboard-header">
         <div>
           <button className="back-link mb-2" onClick={() => navigate('/admin')}>
-            <ArrowLeft size={16} className="mr-2" /> Bảng điều khiển
+            <ArrowLeft size={16} style={{ marginRight: '8px' }} /> Bảng điều khiển
           </button>
           <h1 className="dashboard-title">HỆ THỐNG <span className="highlight-blue">Q&A</span></h1>
         </div>
-        <button className="glass-btn btn-secondary" onClick={fetchQuestions}>
-          <RefreshCw size={20} className={`mr-2 ${loading ? 'animate-spin' : ''}`} />
+        <button className="glass-btn btn-secondary refresh-btn" onClick={fetchQuestions}>
+          <RefreshCw size={18} className={loading ? 'animate-spin' : ''} style={{ marginRight: '8px' }} />
           Làm mới
         </button>
       </div>
 
       {loading ? (
-        <div className="flex-center py-12">
-          <p className="text-xl text-slate-300">Đang tải câu hỏi...</p>
+        <div className="flex-center" style={{ padding: '3rem 0' }}>
+          <p style={{ fontSize: '1.25rem', color: '#cbd5e1' }}>Đang tải câu hỏi...</p>
         </div>
       ) : questions.length === 0 ? (
         <motion.div 
@@ -96,8 +96,8 @@ const QADashboard = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <Inbox size={48} className="mx-auto mb-4 text-slate-500" />
-          <h3 className="text-xl font-bold mb-2">Chưa có câu hỏi nào</h3>
+          <Inbox size={48} style={{ margin: '0 auto 1rem', color: '#64748b' }} />
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Chưa có câu hỏi nào</h3>
           <p>Hãy mời khán giả đặt câu hỏi thông qua trang Khách.</p>
         </motion.div>
       ) : (
@@ -109,27 +109,27 @@ const QADashboard = () => {
           {questions.map((q, index) => (
             <motion.div 
               key={q._id} 
-              className={`question-card glass-card ${q.answered ? 'opacity-70' : ''}`}
+              className={`question-card glass-card ${q.answered ? 'card-answered' : ''}`}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.05 }}
               style={{ padding: '1.5rem', margin: 0, position: 'relative' }}
             >
-              <div className="flex justify-between items-start mb-2">
+              <div className="question-header">
                 <div>
                   <h3 className="q-author">{q.name}</h3>
                   <p className="q-email">{q.email}</p>
                 </div>
-                <div className="flex gap-2">
+                <div className="action-buttons-group">
                   <button 
-                    className={`p-2 rounded-full transition-colors ${q.answered ? 'bg-green-500/20 text-green-400' : 'bg-slate-700/50 text-slate-300 hover:bg-slate-700'}`}
+                    className={`icon-btn ${q.answered ? 'btn-answered' : ''}`}
                     onClick={() => handleToggleAnswered(q._id, q.answered)}
                     title={q.answered ? "Đánh dấu chưa trả lời" : "Đánh dấu đã trả lời"}
                   >
                     <CheckCircle size={18} />
                   </button>
                   <button 
-                    className="p-2 rounded-full bg-slate-700/50 text-slate-300 hover:bg-blue-500/30 hover:text-blue-400 transition-colors"
+                    className="icon-btn"
                     onClick={() => {
                       setAnsweringId(answeringId === q._id ? null : q._id);
                       setAnswerText(q.answerContent || '');
@@ -139,7 +139,7 @@ const QADashboard = () => {
                     <MessageCircle size={18} />
                   </button>
                   <button 
-                    className="p-2 rounded-full bg-slate-700/50 text-slate-300 hover:bg-red-500/30 hover:text-red-400 transition-colors"
+                    className="icon-btn btn-delete"
                     onClick={() => handleDelete(q._id)}
                     title="Xóa câu hỏi"
                   >
@@ -151,30 +151,31 @@ const QADashboard = () => {
               <div className="q-content">{q.content}</div>
               
               {q.answerContent && answeringId !== q._id && (
-                <div className="mt-4 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg">
-                  <p className="text-sm font-semibold text-blue-400 mb-1">Câu trả lời:</p>
-                  <p className="text-slate-300 text-sm whitespace-pre-wrap">{q.answerContent}</p>
+                <div className="answer-box">
+                  <p className="answer-label">Câu trả lời:</p>
+                  <p className="answer-text">{q.answerContent}</p>
                 </div>
               )}
 
               {answeringId === q._id && (
-                <div className="mt-4 pt-4 border-t border-slate-700/50">
-                  <div className="flex justify-between items-center mb-2">
-                    <p className="text-sm font-semibold text-blue-400">Nhập câu trả lời:</p>
-                    <button onClick={() => setAnsweringId(null)} className="text-slate-400 hover:text-white">
+                <div className="answer-form">
+                  <div className="answer-form-header">
+                    <p className="answer-label">Nhập câu trả lời:</p>
+                    <button onClick={() => setAnsweringId(null)} className="btn-close">
                       <X size={16} />
                     </button>
                   </div>
                   <textarea
-                    className="w-full bg-slate-800/50 border border-slate-600 rounded p-2 text-white text-sm mb-2 focus:border-blue-500 outline-none"
+                    className="glass-textarea"
+                    style={{ minHeight: '80px', marginBottom: '0.5rem', fontSize: '0.9rem', padding: '0.75rem' }}
                     rows="3"
                     value={answerText}
                     onChange={(e) => setAnswerText(e.target.value)}
                     placeholder="Viết câu trả lời của bạn..."
                   ></textarea>
-                  <div className="flex justify-end">
+                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <button 
-                      className="px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded text-sm transition-colors"
+                      className="glass-btn btn-primary btn-small"
                       onClick={() => submitAnswer(q._id)}
                     >
                       Lưu trả lời
@@ -183,7 +184,7 @@ const QADashboard = () => {
                 </div>
               )}
 
-              <p className="q-date mt-4">
+              <p className="q-date">
                 {new Date(q.createdAt).toLocaleString('vi-VN')}
               </p>
             </motion.div>
