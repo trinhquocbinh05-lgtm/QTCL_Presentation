@@ -7,29 +7,29 @@ const callouts = [
     id: 1, 
     title: "CẤU TRÚC YẾU:", 
     desc: "Định vị sản phẩm không rõ ràng.<br/>(<span class=\"highlight-red\">Độ nhận diện: 20%</span>)", 
-    x: 50, y: 200, w: 900, h: 320,
-    line: "M 950 360 L 1050 360 L 1150 700"
+    x: 60, y: 100, w: 450, h: 220,
+    line: "M 510 210 L 600 210 L 720 350"
   },
   { 
     id: 2, 
     title: "LỖI ĐỊNH VỊ VĂN HÓA:", 
     desc: "Phản ứng tiêu cực từ người tiêu dùng.<br/>(<span class=\"highlight-red\">Mức độ: Cao</span>)", 
-    x: 2050, y: 200, w: 900, h: 320,
-    line: "M 2050 360 L 1950 360 L 1850 700"
+    x: 1410, y: 100, w: 450, h: 220,
+    line: "M 1410 210 L 1320 210 L 1200 350"
   },
   { 
     id: 3, 
     title: "HỆ THỐNG PHÂN PHỐI LỖI:", 
     desc: "Cạnh tranh nội bộ và thiếu hiệu quả.<br/>(<span class=\"highlight-red\">Tác động: Nghiêm trọng</span>)", 
-    x: 50, y: 800, w: 900, h: 320,
-    line: "M 950 960 L 1050 960 L 1150 1200"
+    x: 60, y: 500, w: 450, h: 220,
+    line: "M 510 610 L 600 610 L 750 550"
   },
   { 
     id: 4, 
     title: "CƠ CHẾ SỤP ĐỔ:", 
     desc: "Chiến lược marketing thiếu liên kết.<br/>(<span class=\"highlight-red\">Kết quả: Ngừng hoạt động 2010</span>)", 
-    x: 2050, y: 800, w: 900, h: 320,
-    line: "M 2050 960 L 1950 960 L 1850 1200"
+    x: 1410, y: 500, w: 450, h: 220,
+    line: "M 1410 610 L 1320 610 L 1170 550"
   }
 ];
 
@@ -183,7 +183,7 @@ const Slide1 = () => {
       {/* Bottom Panel for Cup & Callouts */}
       <div className="bottom-panel">
         <div className="blueprint-container">
-          <svg viewBox="0 0 3000 1500" className="cup-svg">
+          <svg viewBox="0 0 1920 850" className="cup-svg">
             <defs>
               <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                 <polygon points="0 0, 10 3.5, 0 7" fill="#e53935" />
@@ -205,9 +205,9 @@ const Slide1 = () => {
               initial={{ opacity: 0, x: 0, rotate: 0 }} 
               animate={stage >= 1 ? (stage >= 3 ? { opacity: 1, x: -80, rotate: -8 } : { opacity: 1, x: 0, rotate: 0 }) : { opacity: 0, x: 0, rotate: 0 }} 
               transition={{ duration: stage >= 3 ? 1 : 1, ease: "easeInOut" }}
-              style={{ transformOrigin: '1500px 1450px' }}
+              style={{ transformOrigin: '960px 800px' }}
             >
-              <g transform="translate(800, 150) scale(2)">
+              <g transform="translate(435, -201.25) scale(1.5)">
                 <g clipPath="url(#left-clip)">
                   {cupElements}
                 </g>
@@ -219,9 +219,9 @@ const Slide1 = () => {
               initial={{ opacity: 0, x: 0, rotate: 0 }} 
               animate={stage >= 1 ? (stage >= 3 ? { opacity: 1, x: 80, rotate: 8 } : { opacity: 1, x: 0, rotate: 0 }) : { opacity: 0, x: 0, rotate: 0 }} 
               transition={{ duration: stage >= 3 ? 1 : 1, ease: "easeInOut" }}
-              style={{ transformOrigin: '1500px 1450px' }}
+              style={{ transformOrigin: '960px 800px' }}
             >
-              <g transform="translate(800, 150) scale(2)">
+              <g transform="translate(435, -201.25) scale(1.5)">
                 <g clipPath="url(#right-clip)">
                   {cupElements}
                 </g>
@@ -229,7 +229,7 @@ const Slide1 = () => {
             </motion.g>
 
             {/* The Crack */}
-            <motion.g transform="translate(800, 150) scale(2)">
+            <motion.g transform="translate(435, -201.25) scale(1.5)">
               <motion.polygon
                 points="420,195 390,280 440,380 370,470 400,550 360,650 380,650 420,550 390,470 460,380 410,280 440,195"
                 fill="#e53935"
@@ -247,7 +247,7 @@ const Slide1 = () => {
             </motion.g>
 
             {/* The Chip falling off (Mẻ thật) */}
-            <motion.g transform="translate(800, 150) scale(2)">
+            <motion.g transform="translate(435, -201.25) scale(1.5)">
               <motion.polygon
                 points="440,380 370,470 400,550 460,460"
                 fill="rgba(11, 31, 56, 0.9)"
