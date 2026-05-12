@@ -7,29 +7,29 @@ const callouts = [
     id: 1, 
     title: "CẤU TRÚC YẾU:", 
     desc: "Định vị sản phẩm không rõ ràng.<br/>(<span class=\"highlight-red\">Độ nhận diện: 20%</span>)", 
-    x: 1650, y: 50, w: 850, h: 320,
-    line: "M 1650 210 L 1050 210 L 1050 598 L 712 598"
+    x: 50, y: 200, w: 900, h: 320,
+    line: "M 950 360 L 1050 360 L 1150 700"
   },
   { 
     id: 2, 
     title: "LỖI ĐỊNH VỊ VĂN HÓA:", 
     desc: "Phản ứng tiêu cực từ người tiêu dùng.<br/>(<span class=\"highlight-red\">Mức độ: Cao</span>)", 
-    x: 1700, y: 400, w: 800, h: 320,
-    line: "M 1700 560 L 1050 560 L 1050 758 L 792 758"
+    x: 2050, y: 200, w: 900, h: 320,
+    line: "M 2050 360 L 1950 360 L 1850 700"
   },
   { 
     id: 3, 
     title: "HỆ THỐNG PHÂN PHỐI LỖI:", 
     desc: "Cạnh tranh nội bộ và thiếu hiệu quả.<br/>(<span class=\"highlight-red\">Tác động: Nghiêm trọng</span>)", 
-    x: 1650, y: 750, w: 850, h: 320,
-    line: "M 1650 910 L 1050 910 L 1050 1030 L 728 1030"
+    x: 50, y: 800, w: 900, h: 320,
+    line: "M 950 960 L 1050 960 L 1150 1200"
   },
   { 
     id: 4, 
     title: "CƠ CHẾ SỤP ĐỔ:", 
     desc: "Chiến lược marketing thiếu liên kết.<br/>(<span class=\"highlight-red\">Kết quả: Ngừng hoạt động 2010</span>)", 
-    x: 1600, y: 1100, w: 900, h: 320,
-    line: "M 1600 1260 L 1050 1260 L 1050 1190 L 664 1190"
+    x: 2050, y: 800, w: 900, h: 320,
+    line: "M 2050 960 L 1950 960 L 1850 1200"
   }
 ];
 
@@ -130,8 +130,8 @@ const Slide1 = () => {
   return (
     <div className="slide-container">
       <div className="slide-number">01</div>
-      {/* Left Panel */}
-      <div className="left-panel">
+      {/* Top Panel for Title */}
+      <div className="top-panel">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -158,10 +158,10 @@ const Slide1 = () => {
           </motion.h1>
           <motion.div 
             className="red-divider" 
-            style={{ height: '4px', backgroundColor: '#e53935', margin: '20px 0' }}
+            style={{ height: '4px', backgroundColor: '#e53935', margin: '15px auto' }}
             variants={{
               hidden: { width: 0, opacity: 0 },
-              visible: { width: '60px', opacity: 1, transition: { duration: 0.8, ease: "circOut" } }
+              visible: { width: '80px', opacity: 1, transition: { duration: 0.8, ease: "circOut" } }
             }}
           ></motion.div>
           <motion.p 
@@ -180,10 +180,10 @@ const Slide1 = () => {
         </motion.div>
       </div>
 
-      {/* Right Panel */}
-      <div className="right-panel">
+      {/* Bottom Panel for Cup & Callouts */}
+      <div className="bottom-panel">
         <div className="blueprint-container">
-          <svg viewBox="-200 0 2900 1500" className="cup-svg">
+          <svg viewBox="0 0 3000 1500" className="cup-svg">
             <defs>
               <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                 <polygon points="0 0, 10 3.5, 0 7" fill="#e53935" />
@@ -203,11 +203,11 @@ const Slide1 = () => {
             {/* Cup Drawing - Left Half */}
             <motion.g 
               initial={{ opacity: 0, x: 0, rotate: 0 }} 
-              animate={stage >= 1 ? (stage >= 3 ? { opacity: 1, x: -60, rotate: -8 } : { opacity: 1, x: 0, rotate: 0 }) : { opacity: 0, x: 0, rotate: 0 }} 
+              animate={stage >= 1 ? (stage >= 3 ? { opacity: 1, x: -80, rotate: -8 } : { opacity: 1, x: 0, rotate: 0 }) : { opacity: 0, x: 0, rotate: 0 }} 
               transition={{ duration: stage >= 3 ? 1 : 1, ease: "easeInOut" }}
-              style={{ transformOrigin: '610px 1190px' }}
+              style={{ transformOrigin: '1500px 1450px' }}
             >
-              <g transform="translate(50, 150) scale(1.6)">
+              <g transform="translate(800, 150) scale(2)">
                 <g clipPath="url(#left-clip)">
                   {cupElements}
                 </g>
@@ -217,11 +217,11 @@ const Slide1 = () => {
             {/* Cup Drawing - Right Half */}
             <motion.g 
               initial={{ opacity: 0, x: 0, rotate: 0 }} 
-              animate={stage >= 1 ? (stage >= 3 ? { opacity: 1, x: 60, rotate: 8 } : { opacity: 1, x: 0, rotate: 0 }) : { opacity: 0, x: 0, rotate: 0 }} 
+              animate={stage >= 1 ? (stage >= 3 ? { opacity: 1, x: 80, rotate: 8 } : { opacity: 1, x: 0, rotate: 0 }) : { opacity: 0, x: 0, rotate: 0 }} 
               transition={{ duration: stage >= 3 ? 1 : 1, ease: "easeInOut" }}
-              style={{ transformOrigin: '610px 1190px' }}
+              style={{ transformOrigin: '1500px 1450px' }}
             >
-              <g transform="translate(50, 150) scale(1.6)">
+              <g transform="translate(800, 150) scale(2)">
                 <g clipPath="url(#right-clip)">
                   {cupElements}
                 </g>
@@ -229,7 +229,7 @@ const Slide1 = () => {
             </motion.g>
 
             {/* The Crack */}
-            <motion.g transform="translate(50, 150) scale(1.6)">
+            <motion.g transform="translate(800, 150) scale(2)">
               <motion.polygon
                 points="420,195 390,280 440,380 370,470 400,550 360,650 380,650 420,550 390,470 460,380 410,280 440,195"
                 fill="#e53935"
@@ -238,7 +238,7 @@ const Slide1 = () => {
                 animate={
                   stage >= 2 
                     ? (stage >= 3 
-                        ? { clipPath: "inset(0 0 0% 0)", x: 37.5, rotate: 8 } 
+                        ? { clipPath: "inset(0 0 0% 0)", x: 47, rotate: 8 } 
                         : { clipPath: "inset(0 0 0% 0)", x: 0, rotate: 0 }) 
                     : { clipPath: "inset(0 0 100% 0)", x: 0, rotate: 0 }
                 }
@@ -247,14 +247,14 @@ const Slide1 = () => {
             </motion.g>
 
             {/* The Chip falling off (Mẻ thật) */}
-            <motion.g transform="translate(50, 150) scale(1.6)">
+            <motion.g transform="translate(800, 150) scale(2)">
               <motion.polygon
                 points="440,380 370,470 400,550 460,460"
                 fill="rgba(11, 31, 56, 0.9)"
                 stroke="#94a3b8"
                 strokeWidth="2"
                 initial={{ x: 0, y: 0, rotate: 0, opacity: 0 }}
-                animate={stage >= 3 ? { x: 75, y: 94, rotate: 45, opacity: 1 } : { opacity: 0, x: 0, y: 0, rotate: 0 }}
+                animate={stage >= 3 ? { x: 90, y: 110, rotate: 45, opacity: 1 } : { opacity: 0, x: 0, y: 0, rotate: 0 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 style={{ transformOrigin: '400px 470px' }}
               />
@@ -272,7 +272,7 @@ const Slide1 = () => {
                   d={c.line} 
                   fill="none" 
                   stroke="#e53935" 
-                  strokeWidth="2" 
+                  strokeWidth="4" 
                   markerEnd="url(#arrowhead)" 
                   strokeDasharray="4 2"
                 />

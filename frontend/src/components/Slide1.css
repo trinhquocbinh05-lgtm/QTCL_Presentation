@@ -1,14 +1,14 @@
 .slide-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   margin: 0;
-  padding: 3% 2%;
+  padding: 3% 2% 0 2%;
   box-sizing: border-box;
   align-items: center;
-  justify-content: space-between;
-  gap: 2%;
+  justify-content: flex-start;
+  gap: 0;
   position: relative;
 }
 
@@ -29,12 +29,15 @@
   }
 }
 
-.left-panel {
-  flex: 0 0 42%;
+.top-panel {
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 0;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2%;
 }
 
 .status-badge {
@@ -78,13 +81,14 @@
   z-index: 50;
 }
 
-.right-panel {
-  flex: 0 0 55%;
+.bottom-panel {
+  flex: 1;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   position: relative;
-  height: 100%;
+  min-height: 0;
 }
 
 .blueprint-container {
@@ -193,7 +197,7 @@
     overflow-y: auto;
   }
   
-  .left-panel {
+  .top-panel {
     flex: none;
     text-align: center;
     margin-bottom: 40px;
@@ -203,7 +207,7 @@
     margin: 0 auto;
   }
   
-  .right-panel {
+  .bottom-panel {
     width: 100%;
     height: 500px;
   }
