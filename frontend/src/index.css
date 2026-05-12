@@ -185,3 +185,33 @@ body {
   display: inline-block;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+
+/* Custom Premium Scrollbar - Auto Hide */
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Hidden by default */
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+
+  /* Appears when hovering over any scrollable element */
+  *:hover::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.3);
+  }
+
+  /* Brighter when directly hovering the scrollbar thumb */
+  *:hover::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.8);
+  }
+}
+

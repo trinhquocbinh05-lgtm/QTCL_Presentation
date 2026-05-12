@@ -12,9 +12,11 @@ const QADashboard = () => {
   const [answeringId, setAnsweringId] = useState(null);
   const [answerText, setAnswerText] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
+  const [filter, setFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const itemsPerPage = 6;
 
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiUrl = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:5000`;
 
   const fetchQuestions = async () => {
     setLoading(true);
@@ -35,6 +37,10 @@ const QADashboard = () => {
     }
     fetchQuestions();
   }, [navigate]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter, searchQuery]);
 
   const handleDelete = async (id) => {
     if (!window.confirm('Bạn có chắc chắn muốn xóa câu hỏi này?')) return;
@@ -76,30 +82,68 @@ const QADashboard = () => {
     }
   };
 
-  const totalPages = Math.ceil(questions.length / itemsPerPage);
+  const filteredQuestions = questions.filter(q => {
+    if (filter === 'answered' && !q.answered) return false;
+    if (filter === 'unanswered' && q.answered) return false;
+    
+    if (searchQuery) {
+      const lowerQuery = searchQuery.toLowerCase();
+      const matchName = q.name?.toLowerCase().includes(lowerQuery);
+      const matchEmail = q.email?.toLowerCase().includes(lowerQuery);
+      const matchContent = q.content?.toLowerCase().includes(lowerQuery);
+      return matchName || matchEmail || matchContent;
+    }
+    
+    return true;
+  });
+
+  const totalPages = Math.ceil(filteredQuestions.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentQuestions = questions.slice(indexOfFirstItem, indexOfLastItem);
+  const currentQuestions = filteredQuestions.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
     if (currentPage > totalPages && totalPages > 0) {
       setCurrentPage(totalPages);
     }
-  }, [questions.length, currentPage, totalPages]);
+  }, [filteredQuestions.length, currentPage, totalPages]);
 
   return (
     <div className="page-container">
-      <div className="dashboard-header">
-        <div>
-          <button className="back-link mb-2" onClick={() => navigate('/admin')}>
-            <ArrowLeft size={16} style={{ marginRight: '8px' }} /> Bảng điều khiển
+      <div className="sticky-header">
+        <div className="dashboard-header" style={{ marginBottom: '1.5rem', borderBottom: 'none', paddingBottom: 0 }}>
+          <div>
+            <button className="back-link" style={{ marginBottom: '0.5rem' }} onClick={() => navigate('/admin')}>
+              <ArrowLeft size={16} style={{ marginRight: '0.5rem' }} /> Bảng điều khiển
+            </button>
+            <h1 className="dashboard-title">HỆ THỐNG <span className="highlight-blue">Q&A</span></h1>
+          </div>
+          <button className="glass-btn btn-secondary refresh-btn" onClick={fetchQuestions} title="Làm mới">
+            <RefreshCw size={16} className={loading ? 'animate-spin' : ''} style={{ marginRight: '6px' }} />
+            <span className="refresh-text">Làm mới</span>
           </button>
-          <h1 className="dashboard-title">HỆ THỐNG <span className="highlight-blue">Q&A</span></h1>
         </div>
-        <button className="glass-btn btn-secondary refresh-btn" onClick={fetchQuestions}>
-          <RefreshCw size={16} className={loading ? 'animate-spin' : ''} style={{ marginRight: '6px' }} />
-          Làm mới
-        </button>
+
+        <div className="filter-controls" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <input 
+            type="text" 
+            className="glass-input" 
+            placeholder="Tìm kiếm theo tên, email, nội dung..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{ flex: 1, minWidth: '250px' }}
+          />
+          <select 
+            className="glass-input" 
+            value={filter} 
+            onChange={(e) => setFilter(e.target.value)}
+            style={{ width: 'auto', minWidth: '150px' }}
+          >
+            <option value="all" style={{ color: 'black' }}>Tất cả câu hỏi</option>
+            <option value="unanswered" style={{ color: 'black' }}>Chưa trả lời</option>
+            <option value="answered" style={{ color: 'black' }}>Đã trả lời</option>
+          </select>
+        </div>
       </div>
 
       {loading ? (
