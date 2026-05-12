@@ -12,7 +12,7 @@ const EntryPage = () => {
 
   const handleAdminSubmit = (e) => {
     e.preventDefault();
-    if (passcode === 'UEHADMIN') {
+    if (passcode === 'clm2024') {
       // For simplicity, we just use a basic check.
       // In a real app, this should be a JWT or session token from backend.
       localStorage.setItem('isAdmin', 'true');

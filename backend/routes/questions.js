@@ -34,13 +34,22 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PATCH update a question's answer status
+// PATCH update a question's answer status or content
 router.patch('/:id', async (req, res) => {
   try {
-    const { answered, answerContent } = req.body;
+    const { answered, answerContent, name, email, content } = req.body;
+    
+    // Build update object dynamically
+    const updateData = {};
+    if (answered !== undefined) updateData.answered = answered;
+    if (answerContent !== undefined) updateData.answerContent = answerContent;
+    if (name !== undefined) updateData.name = name;
+    if (email !== undefined) updateData.email = email;
+    if (content !== undefined) updateData.content = content;
+
     const updatedQuestion = await Question.findByIdAndUpdate(
       req.params.id,
-      { answered, answerContent },
+      updateData,
       { new: true }
     );
     if (!updatedQuestion) {
