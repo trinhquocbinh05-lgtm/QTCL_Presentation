@@ -7,29 +7,29 @@ const callouts = [
     id: 1, 
     title: "CẤU TRÚC YẾU:", 
     desc: "Định vị sản phẩm không rõ ràng.<br/>(<span class=\"highlight-red\">Độ nhận diện: 20%</span>)", 
-    x: 60, y: 100, w: 450, h: 220,
-    line: "M 510 210 L 600 210 L 720 350"
+    x: 20, y: 70, w: 540, h: 280,
+    line: "M 560 210 L 620 210 L 945 280"
   },
   { 
     id: 2, 
     title: "LỖI ĐỊNH VỊ VĂN HÓA:", 
     desc: "Phản ứng tiêu cực từ người tiêu dùng.<br/>(<span class=\"highlight-red\">Mức độ: Cao</span>)", 
-    x: 1410, y: 100, w: 450, h: 220,
-    line: "M 1410 210 L 1320 210 L 1200 350"
+    x: 1360, y: 70, w: 540, h: 280,
+    line: "M 1360 210 L 1300 210 L 960 380"
   },
   { 
     id: 3, 
     title: "HỆ THỐNG PHÂN PHỐI LỖI:", 
     desc: "Cạnh tranh nội bộ và thiếu hiệu quả.<br/>(<span class=\"highlight-red\">Tác động: Nghiêm trọng</span>)", 
-    x: 60, y: 500, w: 450, h: 220,
-    line: "M 510 610 L 600 610 L 750 550"
+    x: 20, y: 480, w: 540, h: 280,
+    line: "M 560 620 L 620 620 L 880 650"
   },
   { 
     id: 4, 
     title: "CƠ CHẾ SỤP ĐỔ:", 
     desc: "Chiến lược marketing thiếu liên kết.<br/>(<span class=\"highlight-red\">Kết quả: Ngừng hoạt động 2010</span>)", 
-    x: 1410, y: 500, w: 450, h: 220,
-    line: "M 1410 610 L 1320 610 L 1170 550"
+    x: 1360, y: 480, w: 540, h: 280,
+    line: "M 1360 620 L 1300 620 L 920 550"
   }
 ];
 
@@ -207,7 +207,7 @@ const Slide1 = () => {
               transition={{ duration: stage >= 3 ? 1 : 1, ease: "easeInOut" }}
               style={{ transformOrigin: '960px 800px' }}
             >
-              <g transform="translate(435, -201.25) scale(1.5)">
+              <g transform="translate(520, 0) scale(1)">
                 <g clipPath="url(#left-clip)">
                   {cupElements}
                 </g>
@@ -221,7 +221,7 @@ const Slide1 = () => {
               transition={{ duration: stage >= 3 ? 1 : 1, ease: "easeInOut" }}
               style={{ transformOrigin: '960px 800px' }}
             >
-              <g transform="translate(435, -201.25) scale(1.5)">
+              <g transform="translate(520, 0) scale(1)">
                 <g clipPath="url(#right-clip)">
                   {cupElements}
                 </g>
@@ -229,7 +229,7 @@ const Slide1 = () => {
             </motion.g>
 
             {/* The Crack */}
-            <motion.g transform="translate(435, -201.25) scale(1.5)">
+            <motion.g transform="translate(520, 0) scale(1)">
               <motion.polygon
                 points="420,195 390,280 440,380 370,470 400,550 360,650 380,650 420,550 390,470 460,380 410,280 440,195"
                 fill="#e53935"
@@ -247,7 +247,7 @@ const Slide1 = () => {
             </motion.g>
 
             {/* The Chip falling off (Mẻ thật) */}
-            <motion.g transform="translate(435, -201.25) scale(1.5)">
+            <motion.g transform="translate(520, 0) scale(1)">
               <motion.polygon
                 points="440,380 370,470 400,550 460,460"
                 fill="rgba(11, 31, 56, 0.9)"

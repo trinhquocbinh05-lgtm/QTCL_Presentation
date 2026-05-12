@@ -6,6 +6,7 @@ import Slide0 from '../components/Slide0';
 import Slide1 from '../components/Slide1';
 import Slide2 from '../components/Slide2';
 import Slide3 from '../components/Slide3';
+import Slide3B from '../components/Slide3B';
 import Slide4 from '../components/Slide4';
 import Slide5 from '../components/Slide5';
 import Slide6 from '../components/Slide6';
@@ -25,7 +26,7 @@ function Presentation() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeNav, setActiveNav] = useState(null); // 'left' or 'right'
   const [showQR, setShowQR] = useState(false);
-  const totalSlides = 21; // Updated for Slide 6, 8, 15 multi-step
+  const totalSlides = 22; // Updated for Slide 6, 8, 15 multi-step
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -66,20 +67,21 @@ function Presentation() {
         {currentSlide === 1 && <Slide1 key="slide1" />}
         {currentSlide === 2 && <Slide2 key="slide2" />}
         {currentSlide === 3 && <Slide3 key="slide3" />}
-        {currentSlide === 4 && <Slide4 key="slide4" />}
-        {currentSlide === 5 && <Slide5 key="slide5" />}
-        {(currentSlide === 6 || currentSlide === 7) && <Slide6 key="slide6" isAnimated={currentSlide === 7} />}
-        {currentSlide === 8 && <Slide7 key="slide7" />}
-        {(currentSlide === 9 || currentSlide === 10) && <Slide8 key="slide8" isAnimated={currentSlide === 10} />}
-        {currentSlide === 11 && <Slide9 key="slide9" />}
-        {currentSlide === 12 && <Slide10 key="slide10" />}
-        {currentSlide === 13 && <Slide11 key="slide11" />}
-        {currentSlide === 14 && <Slide12 key="slide12" />}
-        {currentSlide === 15 && <Slide13 key="slide13" />}
-        {currentSlide === 16 && <Slide14 key="slide14" />}
-        {(currentSlide >= 17 && currentSlide <= 19) && <Slide15 key="slide15" step={currentSlide - 16} />}
-        {currentSlide === 20 && <Slide16 key="slide16" />}
-        {currentSlide === 21 && <Slide17 key="slide17" />}
+        {currentSlide === 4 && <Slide3B key="slide3b" />}
+        {currentSlide === 5 && <Slide4 key="slide4" />}
+        {currentSlide === 6 && <Slide5 key="slide5" />}
+        {(currentSlide === 7 || currentSlide === 8) && <Slide6 key="slide6" isAnimated={currentSlide === 8} />}
+        {currentSlide === 9 && <Slide7 key="slide7" />}
+        {(currentSlide === 10 || currentSlide === 11) && <Slide8 key="slide8" isAnimated={currentSlide === 11} />}
+        {currentSlide === 12 && <Slide9 key="slide9" />}
+        {currentSlide === 13 && <Slide10 key="slide10" />}
+        {currentSlide === 14 && <Slide11 key="slide11" />}
+        {currentSlide === 15 && <Slide12 key="slide12" />}
+        {currentSlide === 16 && <Slide13 key="slide13" />}
+        {currentSlide === 17 && <Slide14 key="slide14" />}
+        {(currentSlide >= 18 && currentSlide <= 20) && <Slide15 key="slide15" step={currentSlide - 17} />}
+        {currentSlide === 21 && <Slide16 key="slide16" />}
+        {currentSlide === 22 && <Slide17 key="slide17" />}
       </AnimatePresence>
       
       {/* Navigation Controls */}

@@ -173,7 +173,7 @@
 
 .callout-title {
   font-family: monospace;
-  font-size: 24px;
+  font-size: 38px;
   color: #a0aec0;
   font-weight: 700;
   letter-spacing: 2px;
@@ -182,7 +182,7 @@
 }
 
 .callout-desc {
-  font-size: 18px;
+  font-size: 28px;
   color: var(--text-primary);
   line-height: 1.5;
   margin: 0;

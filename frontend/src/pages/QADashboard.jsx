@@ -98,15 +98,10 @@ const QADashboard = () => {
   });
 
   const totalPages = Math.ceil(filteredQuestions.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
+  const safeCurrentPage = Math.max(1, Math.min(currentPage, totalPages === 0 ? 1 : totalPages));
+  const indexOfLastItem = safeCurrentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentQuestions = filteredQuestions.slice(indexOfFirstItem, indexOfLastItem);
-
-  useEffect(() => {
-    if (currentPage > totalPages && totalPages > 0) {
-      setCurrentPage(totalPages);
-    }
-  }, [filteredQuestions.length, currentPage, totalPages]);
 
   return (
     <div className="page-container">
@@ -256,20 +251,20 @@ const QADashboard = () => {
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem', gap: '1rem' }}>
               <button 
                 className="glass-btn btn-secondary btn-small"
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                style={{ opacity: currentPage === 1 ? 0.5 : 1, cursor: currentPage === 1 ? 'not-allowed' : 'pointer', minWidth: '80px' }}
+                onClick={() => setCurrentPage(Math.max(safeCurrentPage - 1, 1))}
+                disabled={safeCurrentPage === 1}
+                style={{ opacity: safeCurrentPage === 1 ? 0.5 : 1, cursor: safeCurrentPage === 1 ? 'not-allowed' : 'pointer', minWidth: '80px' }}
               >
                 Trước
               </button>
               <span style={{ fontSize: '1rem', color: '#cbd5e1', fontWeight: 500 }}>
-                Trang {currentPage} / {totalPages}
+                Trang {safeCurrentPage} / {totalPages}
               </span>
               <button 
                 className="glass-btn btn-secondary btn-small"
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                style={{ opacity: currentPage === totalPages ? 0.5 : 1, cursor: currentPage === totalPages ? 'not-allowed' : 'pointer', minWidth: '80px' }}
+                onClick={() => setCurrentPage(Math.min(safeCurrentPage + 1, totalPages))}
+                disabled={safeCurrentPage === totalPages}
+                style={{ opacity: safeCurrentPage === totalPages ? 0.5 : 1, cursor: safeCurrentPage === totalPages ? 'not-allowed' : 'pointer', minWidth: '80px' }}
               >
                 Sau
               </button>
